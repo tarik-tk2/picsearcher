@@ -45,11 +45,16 @@ buttonSearch("environment")
  }
 // show images 
 const showImages = (images) => {
-
-  imagesArea.style.display = 'block';
+ console.log(images)
+ if(images.length==0){
+    document.getElementById("not-found").style.display='block';
+    toggle();
+ }else{
+   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
   // show gallery title
   galleryHeader.style.display = 'flex';
+  
 
   images.forEach(image => {
  
@@ -59,6 +64,8 @@ const showImages = (images) => {
     gallery.appendChild(div)
   })
  toggle();
+ }
+  
 }
 
 const getImages = (query) => {
@@ -67,7 +74,9 @@ const getImages = (query) => {
     .then(response => response.json())
     .then(data => showImages(data.hits))
 
-    .catch(err => console.log(err))
+    .catch(err =>{  
+   console.log(err)
+  })
   //  console.log(data.hitS) ;
 }
 

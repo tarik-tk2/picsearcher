@@ -1,7 +1,5 @@
 
 
-
-
 const imagesArea = document.querySelector('.images');
 const gallery = document.querySelector('.gallery');
 const galleryHeader = document.querySelector('.gallery-header');
@@ -16,7 +14,35 @@ let sliders = [];
 // Find the name in the url and go to their website
 // to create your own api key
 const KEY = '15674931-a9d714b6e9d654524df198e00&q';
+const flower=document.getElementById("flower");
+flower.addEventListener('click',function(){
+buttonSearch("flower")
+})
+book.addEventListener('click',function(){
+buttonSearch("book")
+})
+river.addEventListener('click',function(){
+buttonSearch("river")
+})
+summer.addEventListener('click',function(){
+buttonSearch("summer")
+})
+nature.addEventListener('click',function(){
+buttonSearch("nature")
+})
+environment.addEventListener('click',function(){
+buttonSearch("environment")
+})
 
+ function buttonSearch(param){
+   document.getElementById('duration').style.border = '2px solid blue';
+  document.querySelector('.main').style.display = 'none';
+  clearInterval(timer);
+  const search = document.getElementById('search');
+  getImages(param)
+  sliders.length = 0;
+  search.value=" ";
+ }
 // show images 
 const showImages = (images) => {
 
@@ -36,7 +62,7 @@ const showImages = (images) => {
 }
 
 const getImages = (query) => {
-        toggle();
+ toggle();
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -173,14 +199,11 @@ getSlider();
 
 })
 
-
-
 sliderBtn.addEventListener('click', function () {
   
   createSlider();
   
 })
-
 
  function toggle(){
    const spinner= document.getElementById("spinner-loading");
